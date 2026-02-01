@@ -2,7 +2,13 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Lead, LeadStatus, LeadSource, LeadPriority, NoteAnalysis, Customer, Deal, CRMActivity } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Initialize lazily to prevent crash if API key is missing on load
+const getAI = () => {
+  if (typeof process !== 'undefined' && process.env.API_KEY) {
+    return new GoogleGenAI({ apiKey: process.env.API_KEY });
+  }
+  return null;
+};
 
 /**
  * Calculate lead score based on profile and history.
@@ -24,8 +30,10 @@ export async function calculateLeadScore(lead: Lead): Promise<any> {
   `;
 
   try {
+    const ai = getAI();
+    if (!ai) return null;
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: { responseMimeType: "application/json" }
     });
@@ -57,8 +65,10 @@ export async function generateEmailContent(intent: string, tone: string, points:
   `;
 
   try {
+    const ai = getAI();
+    if (!ai) return null;
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: { responseMimeType: "application/json" }
     });
@@ -73,7 +83,9 @@ export async function improveEmailWriting(text: string): Promise<string | null> 
   if (!process.env.API_KEY) return null;
   const prompt = `Refine and improve the following business email to be more professional, clear, and impactful while maintaining the original meaning. Text: "${text}"`;
   try {
-    const response = await ai.models.generateContent({ model: 'gemini-3-flash-preview', contents: prompt });
+    const ai = getAI();
+    if (!ai) return null;
+    const response = await ai.models.generateContent({ model: 'gemini-2.0-flash', contents: prompt });
     return response.text || null;
   } catch (error) { return null; }
 }
@@ -82,7 +94,9 @@ export async function checkEmailGrammar(text: string): Promise<{ corrected: stri
   if (!process.env.API_KEY) return null;
   const prompt = `Check and fix any grammar or spelling errors in this business email. Text: "${text}". Return JSON: { "corrected": "the full fixed text", "explanation": "brief summary of changes" }`;
   try {
-    const response = await ai.models.generateContent({ model: 'gemini-3-flash-preview', contents: prompt, config: { responseMimeType: "application/json" } });
+    const ai = getAI();
+    if (!ai) return null;
+    const response = await ai.models.generateContent({ model: 'gemini-2.0-flash', contents: prompt, config: { responseMimeType: "application/json" } });
     return JSON.parse(response.text || "{}");
   } catch (error) { return null; }
 }
@@ -91,7 +105,9 @@ export async function translateEmailText(text: string, targetLang: 'English' | '
   if (!process.env.API_KEY) return null;
   const prompt = `Translate the following business email text accurately to ${targetLang}. Text: "${text}"`;
   try {
-    const response = await ai.models.generateContent({ model: 'gemini-3-flash-preview', contents: prompt });
+    const ai = getAI();
+    if (!ai) return null;
+    const response = await ai.models.generateContent({ model: 'gemini-2.0-flash', contents: prompt });
     return response.text || null;
   } catch (error) { return null; }
 }
@@ -110,8 +126,10 @@ export async function summarizeLead(lead: Lead): Promise<string> {
   ${history}`;
 
   try {
+    const ai = getAI();
+    if (!ai) return "Could not generate summary.";
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
     });
     return response.text || "Could not generate summary.";
@@ -141,8 +159,10 @@ export async function summarizeActivities(activities: CRMActivity[]): Promise<st
   `;
 
   try {
+    const ai = getAI();
+    if (!ai) return "Summary generation failed.";
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
     });
     return response.text || "Summary generation failed.";
@@ -165,8 +185,10 @@ export async function analyzeNoteContent(noteText: string): Promise<NoteAnalysis
   `;
 
   try {
+    const ai = getAI();
+    if (!ai) return null;
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: { responseMimeType: "application/json" }
     });
@@ -186,8 +208,10 @@ export async function enrichLeadWithSearch(companyName: string): Promise<any> {
   Specifically look for their industry, approximate company size (number of employees), and official website URL.`;
 
   try {
+    const ai = getAI();
+    if (!ai) return null;
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: {
         tools: [{ googleSearch: {} }],
@@ -225,8 +249,10 @@ export async function detectDuplicates(newLead: Partial<Lead>, existingLeads: Le
   `;
 
   try {
+    const ai = getAI();
+    if (!ai) return [];
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: { responseMimeType: "application/json" }
     });
@@ -255,8 +281,10 @@ export async function getStrategicInsights(lead: Lead): Promise<string> {
   `;
 
   try {
+    const ai = getAI();
+    if (!ai) return "• Follow up with a friendly call.\n• Check for mutual LinkedIn connections.\n• Send a quick value proposition via WhatsApp.";
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
     });
     return response.text || "• Follow up with a friendly call.\n• Check for mutual LinkedIn connections.\n• Send a quick value proposition via WhatsApp.";
@@ -290,8 +318,10 @@ export async function extractLeadData(text: string): Promise<any> {
   `;
 
   try {
+    const ai = getAI();
+    if (!ai) return null;
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
       config: { responseMimeType: "application/json" }
     });
@@ -325,8 +355,10 @@ export async function getReportInsights(dataSummary: { leadsCount: number, custo
   `;
 
   try {
+    const ai = getAI();
+    if (!ai) return ["Insights currently unavailable."];
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash',
       contents: prompt,
     });
     const text: string = response.text || "";
