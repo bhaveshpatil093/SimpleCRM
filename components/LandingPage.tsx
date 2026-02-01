@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Zap, 
-  MessageCircle, 
-  Target, 
-  ArrowRight, 
+import {
+  Zap,
+  MessageCircle,
+  Target,
+  ArrowRight,
   Sparkles,
   BarChart3,
   Rocket,
@@ -28,7 +28,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
             </div>
             <span className="text-xl font-heading font-bold tracking-tight">SimpleCRM</span>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-8">
             {['Features', 'AI Insights', 'Security'].map((item) => (
               <a key={item} href="#" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">{item}</a>
@@ -44,7 +44,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        {/* Modern Gradient Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-slate-50 to-white dark:from-primary/10 dark:via-slate-950 dark:to-slate-950 -z-10" />
+
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -52,37 +55,42 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6 border border-primary/20">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-slate-900 text-primary text-xs font-bold uppercase tracking-wider mb-8 border border-slate-200 dark:border-slate-800 shadow-sm">
                 <Sparkles size={14} /> Prototype Edition • Beta Access
               </div>
-              
+
               <h1 className="text-5xl lg:text-7xl font-heading font-bold text-slate-900 dark:text-white leading-[1.05] mb-8 tracking-tight">
                 The high-performance <br />
-                <span className="text-primary">sales engine</span> for Bharat.
+                <span className="text-primary relative whitespace-nowrap">
+                  sales engine
+                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-primary/30 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                  </svg>
+                </span> for Bharat.
               </h1>
-              
+
               <p className="text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed max-w-lg">
                 Experience how SimpleCRM combines Google Gemini AI with high-velocity workflows. Explore the interactive prototype and see the future of Indian sales.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                 <button 
+                <button
                   onClick={onLogin}
-                  className="w-full sm:w-auto px-10 py-4 bg-primary text-white rounded-xl font-bold text-lg hover:bg-primary-600 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-primary/20"
-                 >
-                   Launch Demo Dashboard <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                 </button>
-                 <button 
-                  onClick={() => {}} 
-                  className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-xl font-semibold text-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
-                 >
-                   Documentation
-                 </button>
+                  className="w-full sm:w-auto px-10 py-5 bg-primary text-white rounded-full font-bold text-lg hover:bg-primary-600 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1"
+                >
+                  Launch Demo Dashboard <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+                <button
+                  onClick={() => { }}
+                  className="w-full sm:w-auto px-8 py-5 bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-full font-semibold text-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:-translate-y-1 hover:shadow-lg"
+                >
+                  Documentation
+                </button>
               </div>
 
               <div className="mt-12 flex items-center gap-6">
-                <div className="flex -space-x-3">
-                   {[1,2,3,4].map(i => <div key={i} className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-950 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px] font-bold">U{i}</div>)}
+                <div className="flex -space-x-4">
+                  {[1, 2, 3, 4].map(i => <div key={i} className="w-12 h-12 rounded-full border-4 border-white dark:border-slate-950 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px] font-bold shadow-sm">U{i}</div>)}
                 </div>
                 <div className="text-sm text-slate-500 font-medium">
                   Reviewing the <span className="text-slate-900 dark:text-white font-bold">v1.2 Prototype</span>
@@ -90,17 +98,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
               </div>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, rotate: 2 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative hidden lg:block"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800">
-                <img 
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop" 
-                  alt="Analytics Dashboard" 
-                  className="w-full object-cover"
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white dark:border-slate-900 shadow-primary/20">
+                <img
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+                  alt="Analytics Dashboard"
+                  className="w-full object-cover scale-105 hover:scale-100 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent pointer-events-none"></div>
               </div>
@@ -118,34 +126,34 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={Target} 
-              title="Intelligent Scoring" 
+            <FeatureCard
+              icon={Target}
+              title="Intelligent Scoring"
               description="Gemini AI analyzes engagement patterns to automatically prioritize your most valuable opportunities."
             />
-            <FeatureCard 
-              icon={MessageCircle} 
-              title="WhatsApp Native" 
+            <FeatureCard
+              icon={MessageCircle}
+              title="WhatsApp Native"
               description="Built-in templates and automation for India's favorite communication channel. Engage where your customers live."
             />
-            <FeatureCard 
-              icon={BarChart3} 
-              title="Predictive Analytics" 
+            <FeatureCard
+              icon={BarChart3}
+              title="Predictive Analytics"
               description="Advanced forecasting helps you understand tomorrow's revenue today, giving you the edge in planning."
             />
-            <FeatureCard 
-              icon={Shield} 
-              title="Secure & Compliant" 
+            <FeatureCard
+              icon={Shield}
+              title="Secure & Compliant"
               description="Enterprise-grade data encryption and role-based access to keep your sensitive pipeline data private."
             />
-            <FeatureCard 
-              icon={Rocket} 
-              title="High Velocity" 
+            <FeatureCard
+              icon={Rocket}
+              title="High Velocity"
               description="Zero-lag interface optimized for rapid data entry. Capture leads from any source in seconds."
             />
-            <FeatureCard 
-              icon={Check} 
-              title="Automated Follow-ups" 
+            <FeatureCard
+              icon={Check}
+              title="Automated Follow-ups"
               description="Never let a lead go cold. Intelligent reminders and task management keep you moving forward."
             />
           </div>
@@ -153,13 +161,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto bg-primary rounded-[2.5rem] p-12 lg:p-20 text-center text-white relative overflow-hidden shadow-2xl">
+      <section className="py-24 px-6 relative">
+        <div className="max-w-5xl mx-auto bg-primary rounded-[3rem] p-12 lg:p-24 text-center text-white relative overflow-hidden shadow-2xl shadow-primary/30">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 to-transparent" />
           <div className="relative z-10">
-            <h2 className="text-4xl lg:text-6xl font-heading font-bold mb-8">Ready to explore the pipeline?</h2>
+            <h2 className="text-4xl lg:text-6xl font-heading font-bold mb-8 tracking-tight">Ready to explore the pipeline?</h2>
             <p className="text-xl text-primary-100 mb-12 max-w-2xl mx-auto">Access the full demo account and explore the capabilities of Bharat's most advanced CRM prototype.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button onClick={onLogin} className="px-12 py-5 bg-white text-primary rounded-xl font-bold text-xl hover:bg-slate-50 transition-all shadow-xl">Launch Demo Dashboard</button>
+              <button onClick={onLogin} className="px-12 py-5 bg-white text-primary rounded-full font-bold text-xl hover:bg-slate-50 transition-all shadow-xl hover:-translate-y-1">Launch Demo Dashboard</button>
             </div>
           </div>
         </div>
@@ -183,12 +192,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
 };
 
 const FeatureCard: React.FC<{ icon: any, title: string, description: string }> = ({ icon: Icon, title, description }) => (
-  <div className="p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-    <div className="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white transition-all mb-6">
-      <Icon size={24} />
+  <div className="p-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-glow hover:border-primary/30 transition-all duration-300 group">
+    <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white transition-all duration-300 mb-6 group-hover:scale-110">
+      <Icon size={28} />
     </div>
-    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{title}</h3>
-    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{description}</p>
+    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{title}</h3>
+    <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed">{description}</p>
   </div>
 );
 
