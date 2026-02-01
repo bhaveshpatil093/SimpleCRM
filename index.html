@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0F172A">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
+    <title>SimpleCRM | Professional Sales Pipeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: '#2563eb',
+                foreground: '#ffffff',
+                50: '#eff6ff',
+                100: '#dbeafe',
+                200: '#bfdbfe',
+                300: '#93c5fd',
+                400: '#60a5fa',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+              },
+              secondary: '#64748b',
+              accent: '#8b5cf6',
+              background: '#ffffff',
+              surface: '#f8fafc'
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              heading: ['Outfit', 'sans-serif']
+            },
+            borderRadius: {
+              'xl': '0.75rem',
+              '2xl': '1rem',
+              '3xl': '1.5rem',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        -webkit-font-smoothing: antialiased;
+        color: #0f172a;
+        margin: 0;
+        min-height: 100vh;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+        letter-spacing: -0.02em;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 232, 240, 0.5);
+      }
+      .dark .glass-panel {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(30, 41, 59, 0.5);
+      }
+      .subtle-shadow {
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #1e293b;
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
+    "recharts": "https://esm.sh/recharts@2.12.0?external=react,react-dom",
+    "tailwind-merge": "https://esm.sh/tailwind-merge@2.2.1",
+    "clsx": "https://esm.sh/clsx@2.1.0",
+    "@google/genai": "https://esm.sh/@google/genai@1.3.0",
+    "zustand": "https://esm.sh/zustand@4.5.1?external=react,react-dom",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react,react-dom",
+    "react-hook-form": "https://esm.sh/react-hook-form@7.50.1?external=react,react-dom",
+    "zod": "https://esm.sh/zod@3.22.4",
+    "xlsx": "https://esm.sh/xlsx@0.18.5",
+    "@hookform/resolvers/zod": "https://esm.sh/@hookform/resolvers@3.3.4/zod?external=react,react-dom,react-hook-form",
+    "framer-motion": "https://esm.sh/framer-motion@11.0.3?external=react,react-dom",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@hookform/resolvers/": "https://esm.sh/@hookform/resolvers@^5.2.2/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="dark:bg-slate-950 dark:text-slate-100">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

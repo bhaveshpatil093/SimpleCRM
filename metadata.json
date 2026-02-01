@@ -1,0 +1,8 @@
+{
+  "name": "SimpleCRM - AI Powered Business Assistant",
+  "description": "A modern, high-performance CRM designed for Indian businesses, featuring AI-powered lead scoring and follow-up generation using Google Gemini.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
